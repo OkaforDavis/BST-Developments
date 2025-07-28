@@ -3,49 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - BST Developments</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Our Projects - BST Developments</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <ul class="nav-list">
-                <li><a class="nav-link" href="index.html">Home</a></li>
-                <li><a class="nav-link" href="about.html">About Us</a></li>
-                <li><a class="nav-link active" href="projects.html">Projects</a></li>
-                <li><a class="nav-link" href="services.html">Services</a></li>
-                <li><a class="nav-link" href="contact.html">Contact Us</a></li>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo-brand">
+                <img src="logo.png" alt="BST Developments Logo" class="logo" loading="lazy">
+                BST Developments
+            </a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-list" id="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li><a href="projects.html" class="nav-link active">Projects</a></li>
+                <li><a href="index.html#services-section" class="nav-link">Services</a></li>
+                <li><a href="index.html#quote-section" class="nav-link">Get a Quote</a></li>
+                <li><a href="index.html#contact-section" class="nav-link">Contact</a></li>
             </ul>
-        </nav>
-    </header>
-
-    <div class="container">
-        <h1>Our Projects</h1>
-        <p>At BST Developments, we take pride in our work. Here are some of the projects we have completed:</p>
-
-        <div class="project">
-            <h2>Project Title 1</h2>
-            <img src="images/project1.jpg" alt="Project 1">
-            <p>Description of Project 1. This project involved...</p>
         </div>
+    </nav>
 
-        <div class="project">
-            <h2>Project Title 2</h2>
-            <img src="images/project2.jpg" alt="Project 2">
-            <p>Description of Project 2. This project focused on...</p>
+    <section class="projects-page-hero" data-aos="fade-in">
+        <div class="container text-center">
+            <h1 data-aos="fade-up" data-aos-delay="200">Our Latest Projects</h1>
+            <p data-aos="fade-up" data-aos-delay="400">
+                Explore a selection of our recent work, showcasing our diverse capabilities and commitment to quality.
+            </p>
         </div>
+    </section>
 
-        <div class="project">
-            <h2>Project Title 3</h2>
-            <img src="images/project3.jpg" alt="Project 3">
-            <p>Description of Project 3. This project was completed in...</p>
+    <section id="project-gallery" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title">Featured Work</h2>
+            <div class="project-grid">
+                <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://via.placeholder.com/600x400/38bdf8/0f172a?text=Project+1" alt="Project 1" loading="lazy">
+                    <div class="project-info">
+                        <h3>Business Solutions Hub</h3>
+                        <p>A comprehensive business website with CRM integration and a robust client portal, designed for seamless operations.</p>
+                        <a href="#" class="btn btn-tertiary btn-small">View Details <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://via.placeholder.com/600x400/facc15/0f172a?text=Project+2" alt="Project 2" loading="lazy">
+                    <div class="project-info">
+                        <h3>E-commerce Fashion Store</h3>
+                        <p>A stylish and responsive online store built for a fashion brand, featuring secure payment gateways and intuitive product navigation.</p>
+                        <a href="#" class="btn btn-tertiary btn-small">View Details <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://via.placeholder.com/600x400/94a3b8/0f172a?text=Project+3" alt="Project 3" loading="lazy">
+                    <div class="project-info">
+                        <h3>Artist Portfolio & Blog</h3>
+                        <p>A minimalist portfolio website for a visual artist, integrated with a blog for sharing insights and updates.</p>
+                        <a href="#" class="btn btn-tertiary btn-small">View Details <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="400">
+                    <img src="https://via.placeholder.com/600x400/1e293b/38bdf8?text=Project+4" alt="Project 4" loading="lazy">
+                    <div class="project-info">
+                        <h3>Local Cafe Booking System</h3>
+                        <p>A custom web application for a local cafe, allowing customers to easily view menus, reserve tables, and order online.</p>
+                        <a href="#" class="btn btn-tertiary btn-small">View Details <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <section class="dark-section" data-aos="fade-up">
+        <div class="container text-center">
+            <h2 class="section-title">Ready for Your Next Project?</h2>
+            <p class="section-description">If you have a unique idea or a specific requirement, we're here to turn it into a reality. Let's discuss your custom web development needs.</p>
+            <a href="index.html#contact-section" class="btn btn-primary">Start a New Project <i class="fas fa-comments"></i></a>
+        </div>
+    </section>
 
     <footer>
-        <p>&copy; 2023 BST Developments. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2025 BST Developments. All rights reserved. Built with <i class="fas fa-heart"></i> from Abuja, Nigeria.</p>
+            <div class="footer-links">
+                <a href="index.html">Home</a> | 
+                <a href="about.html">About</a> | 
+                <a href="projects.html">Projects</a> | 
+                <a href="index.html#services-section">Services</a>
+            </div>
+        </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            easing: 'ease-in-out',
+        });
+
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        if (mobileMenu && navLinks) {
+            mobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.toggle('is-active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when a link is clicked
+            navLinks.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('is-active');
+                    navLinks.classList.remove('active');
+                });
+            });
+        }
+    </script>
 </body>
 </html>
