@@ -33,6 +33,20 @@
         <li><a href="#contact-section" class="nav-link">Contact</a></li>
       </ul>
     </div>
+    <div class="theme-toggle-container">
+      <div class="theme-options" id="theme-options">
+        <button class="theme-btn" data-theme="dark" aria-label="Dark Theme"><i class="fas fa-moon"></i></button>
+        <button class="theme-btn" data-theme="light" aria-label="Light Theme"><i class="fas fa-sun"></i></button>
+        <button class="theme-btn" data-theme="modern" aria-label="Modern Theme"><i class="fas fa-square"></i></button>
+      </div>
+      <div class="color-picker-container" id="color-picker">
+        <button class="color-swatch" style="background-color: #38bdf8;" data-color="#38bdf8"></button>
+        <button class="color-swatch" style="background-color: #facc15;" data-color="#facc15"></button>
+        <button class="color-swatch" style="background-color: #ef4444;" data-color="#ef4444"></button>
+        <button class="color-swatch" style="background-color: #22c55e;" data-color="#22c55e"></button>
+        <button class="color-swatch" style="background-color: #8b5cf6;" data-color="#8b5cf6"></button>
+      </div>
+    </div>
   </nav>
 
   <header class="hero" data-aos="fade-in">
@@ -190,56 +204,47 @@
     <div class="container">
       <h2 class="section-title">🧾 Get a Custom Quote</h2>
       <p class="section-description">Select your desired service, style, and features to get an instant estimate for your project.</p>
-      <form id="quote-form">
-        <div class="form-group">
-          <label for="service">Select Service:</label>
-          <select class="input-field" id="service" required>
-            <option value="" disabled selected>Choose a Service</option>
-            <option value="business" data-price="150000">Business Website (₦150,000)</option>
-            <option value="ecommerce" data-price="250000">E-commerce Store (₦250,000)</option>
-            <option value="portfolio" data-price="120000">Portfolio Site (₦120,000)</option>
-            <option value="custom" data-price="0">Custom Project (Contact for Price)</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="style">Select Style:</label>
-          <select class="input-field" id="style" required>
-            <option value="" disabled selected>Choose a Style</option>
-            <option value="modern" data-price="30000">Modern (₦30,000)</option>
-            <option value="classic" data-price="20000">Classic (₦20,000)</option>
-            <option value="fun" data-price="25000">Fun (₦25,000)</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>Choose Features:</label>
-          <div class="checkbox-group">
-            <label><input type="checkbox" value="payment" data-price="30000"> Payment Integration (₦30,000)</label>
-            <label><input type="checkbox" value="chat" data-price="15000"> Live Chat (₦15,000)</label>
-            <label><input type="checkbox" value="booking" data-price="20000"> Booking System (₦20,000)</label>
-            <label><input type="checkbox" value="blog" data-price="10000"> Blog Setup (₦10,000)</label>
-            <label><input type="checkbox" value="seo" data-price="25000"> Basic SEO (₦25,000)</label>
-            <label><input type="checkbox" value="analytics" data-price="10000"> Analytics Integration (₦10,000)</label>
+      <div id="quote-form-container" class="form-container">
+        <form id="quote-form">
+          <div class="form-group">
+            <label for="service">Select Service:</label>
+            <select class="input-field" id="service" required>
+              <option value="" disabled selected>Choose a Service</option>
+              <option value="business" data-price="150000">Business Website (₦150,000)</option>
+              <option value="ecommerce" data-price="250000">E-commerce Store (₦250,000)</option>
+              <option value="portfolio" data-price="120000">Portfolio Site (₦120,000)</option>
+              <option value="custom" data-price="0">Custom Project (Contact for Price)</option>
+            </select>
           </div>
-        </div>
-        
-        <div class="quote-actions">
-          <button type="button" class="btn btn-primary" onclick="calculateQuote()">Calculate Price</button>
-          <p id="total-price" class="total-price"></p>
-        </div>
-        
-        <div class="contact-form-container">
-          <h3>Get in Touch</h3>
-          <form id="contact-form">
-            <input type="text" placeholder="Your Name" class="input-field" required>
-            <input type="email" placeholder="Your Email" class="input-field" required>
-            <textarea placeholder="Your Message" rows="5" class="input-field" required></textarea>
-            <button type="submit" class="btn btn-primary">Send Message</button>
-          </form>
-        </div>
 
-      </form>
+          <div class="form-group">
+            <label for="style">Select Style:</label>
+            <select class="input-field" id="style" required>
+              <option value="" disabled selected>Choose a Style</option>
+              <option value="modern" data-price="30000">Modern (₦30,000)</option>
+              <option value="classic" data-price="20000">Classic (₦20,000)</option>
+              <option value="fun" data-price="25000">Fun (₦25,000)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Choose Features:</label>
+            <div class="checkbox-group">
+              <label><input type="checkbox" value="payment" data-price="30000"> Payment Integration (₦30,000)</label>
+              <label><input type="checkbox" value="chat" data-price="15000"> Live Chat (₦15,000)</label>
+              <label><input type="checkbox" value="booking" data-price="20000"> Booking System (₦20,000)</label>
+              <label><input type="checkbox" value="blog" data-price="10000"> Blog Setup (₦10,000)</label>
+              <label><input type="checkbox" value="seo" data-price="25000"> Basic SEO (₦25,000)</label>
+              <label><input type="checkbox" value="analytics" data-price="10000"> Analytics Integration (₦10,000)</label>
+            </div>
+          </div>
+          
+          <div class="quote-actions">
+            <button type="button" class="btn btn-primary" onclick="calculateQuote()">Calculate Price</button>
+            <p id="total-price" class="total-price"></p>
+          </div>
+        </form>
+      </div>
     </div>
   </section>
 
@@ -247,7 +252,7 @@
     <div class="container">
       <h2 class="section-title text-center">Get In Touch</h2>
       <p class="section-description text-center">Have a project in mind or just want to say hello? Reach out to us!</p>
-      <div class="contact-grid">
+      <div class="contact-grid form-container">
         <div class="contact-info">
           <h3>Contact Details</h3>
           <p><i class="fas fa-envelope"></i> Email: <a href="mailto:Okafordavis8@gmail.com">Okafordavis8@gmail.com</a></p>
@@ -362,6 +367,55 @@
             timer: 3000
         });
         this.reset(); // Clear the form
+    });
+
+    // Theme Toggle and Color Picker Logic
+    document.addEventListener("DOMContentLoaded", () => {
+      const body = document.body;
+      const themeOptions = document.getElementById('theme-options');
+      const colorPicker = document.getElementById('color-picker');
+      
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      const savedColor = localStorage.getItem('modernColor') || '#38bdf8';
+
+      setTheme(savedTheme, savedColor);
+
+      themeOptions.addEventListener('click', (e) => {
+        const theme = e.target.closest('button').dataset.theme;
+        if (theme) {
+          localStorage.setItem('theme', theme);
+          const color = localStorage.getItem('modernColor');
+          setTheme(theme, color);
+        }
+      });
+
+      colorPicker.addEventListener('click', (e) => {
+        const color = e.target.closest('button').dataset.color;
+        if (color) {
+          localStorage.setItem('modernColor', color);
+          setTheme('modern', color);
+        }
+      });
+      
+      function setTheme(theme, color) {
+        body.className = ''; // Clear all previous theme classes
+        body.classList.add(theme + '-theme');
+
+        if (theme === 'modern') {
+          colorPicker.style.display = 'flex';
+          document.documentElement.style.setProperty('--modern-color', color);
+        } else {
+          colorPicker.style.display = 'none';
+        }
+
+        // Update active state of theme buttons
+        document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelector(`.theme-btn[data-theme="${theme}"]`).classList.add('active');
+
+        // Update active state of color swatches
+        document.querySelectorAll('.color-swatch').forEach(swatch => swatch.classList.remove('active'));
+        document.querySelector(`.color-swatch[data-color="${color}"]`)?.classList.add('active');
+      }
     });
   </script>
 </body>
