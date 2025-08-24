@@ -10,7 +10,7 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
+<body class="dark-theme">
   <div class="loader" id="loader"><span></span></div>
 
   <nav class="navbar">
@@ -204,7 +204,7 @@
     <div class="container">
       <h2 class="section-title">🧾 Get a Custom Quote</h2>
       <p class="section-description">Select your desired service, style, and features to get an instant estimate for your project.</p>
-      <div id="quote-form-container" class="form-container">
+      <div class="form-container">
         <form id="quote-form">
           <div class="form-group">
             <label for="service">Select Service:</label>
@@ -297,18 +297,16 @@
       easing: 'ease-in-out',
     });
 
-    // Preloader script
     window.addEventListener("load", () => {
       const loader = document.getElementById("loader");
       if (loader) {
         loader.style.opacity = "0";
         setTimeout(() => {
           loader.style.display = "none";
-        }, 500); // Allow fade out transition
+        }, 500);
       }
     });
 
-    // Mobile menu toggle
     const mobileMenu = document.getElementById('mobile-menu');
     const navLinks = document.getElementById('nav-links');
 
@@ -318,7 +316,6 @@
         navLinks.classList.toggle('active');
       });
 
-      // Close menu when a link is clicked
       navLinks.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', () => {
           mobileMenu.classList.remove('is-active');
@@ -336,7 +333,6 @@
       const selectedServiceOption = serviceSelect.options[serviceSelect.selectedIndex];
       const selectedStyleOption = styleSelect.options[styleSelect.selectedIndex];
 
-      // Check if default 'Select Service' or 'Select Style' is still selected
       if (serviceSelect.value === "" || styleSelect.value === "") {
         Swal.fire({
           icon: 'warning',
@@ -356,9 +352,8 @@
       document.getElementById("total-price").innerText = `Estimated Total: ₦${totalPrice.toLocaleString()}`;
     }
 
-    // Handle contact form submission (basic example)
     document.getElementById('contact-form').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission
+        event.preventDefault();
         Swal.fire({
             icon: 'success',
             title: 'Message Sent!',
@@ -366,7 +361,7 @@
             showConfirmButton: false,
             timer: 3000
         });
-        this.reset(); // Clear the form
+        this.reset();
     });
 
     // Theme Toggle and Color Picker Logic
@@ -374,7 +369,9 @@
       const body = document.body;
       const themeOptions = document.getElementById('theme-options');
       const colorPicker = document.getElementById('color-picker');
-      
+      const navbar = document.querySelector('.navbar');
+      const formContainers = document.querySelectorAll('.form-container');
+
       const savedTheme = localStorage.getItem('theme') || 'dark';
       const savedColor = localStorage.getItem('modernColor') || '#38bdf8';
 
@@ -384,8 +381,7 @@
         const theme = e.target.closest('button').dataset.theme;
         if (theme) {
           localStorage.setItem('theme', theme);
-          const color = localStorage.getItem('modernColor');
-          setTheme(theme, color);
+          setTheme(theme);
         }
       });
 
@@ -397,24 +393,30 @@
         }
       });
       
-      function setTheme(theme, color) {
-        body.className = ''; // Clear all previous theme classes
+      function setTheme(theme, color = null) {
+        body.className = '';
         body.classList.add(theme + '-theme');
+
+        navbar.classList.remove('modern-style');
+        formContainers.forEach(container => container.classList.remove('modern-style'));
 
         if (theme === 'modern') {
           colorPicker.style.display = 'flex';
-          document.documentElement.style.setProperty('--modern-color', color);
+          navbar.classList.add('modern-style');
+          formContainers.forEach(container => container.classList.add('modern-style'));
+          document.documentElement.style.setProperty('--modern-color', color || savedColor);
         } else {
           colorPicker.style.display = 'none';
+          document.documentElement.style.setProperty('--modern-color', '');
         }
 
-        // Update active state of theme buttons
         document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
         document.querySelector(`.theme-btn[data-theme="${theme}"]`).classList.add('active');
 
-        // Update active state of color swatches
         document.querySelectorAll('.color-swatch').forEach(swatch => swatch.classList.remove('active'));
-        document.querySelector(`.color-swatch[data-color="${color}"]`)?.classList.add('active');
+        if (color) {
+            document.querySelector(`.color-swatch[data-color="${color}"]`).classList.add('active');
+        }
       }
     });
   </script>
