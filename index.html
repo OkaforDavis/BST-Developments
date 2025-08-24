@@ -10,7 +10,7 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body class="dark-theme">
+<body>
   <div class="loader" id="loader"><span></span></div>
 
   <nav class="navbar">
@@ -378,44 +378,46 @@
       setTheme(savedTheme, savedColor);
 
       themeOptions.addEventListener('click', (e) => {
-        const theme = e.target.closest('button').dataset.theme;
+        const theme = e.target.closest('button')?.dataset.theme;
         if (theme) {
           localStorage.setItem('theme', theme);
-          setTheme(theme);
+          setTheme(theme, savedColor); // Pass savedColor to maintain accent color
         }
       });
 
       colorPicker.addEventListener('click', (e) => {
-        const color = e.target.closest('button').dataset.color;
+        const color = e.target.closest('button')?.dataset.color;
         if (color) {
           localStorage.setItem('modernColor', color);
           setTheme('modern', color);
         }
       });
       
-      function setTheme(theme, color = null) {
+      function setTheme(theme, color) {
+        // Apply theme class to the body
         body.className = '';
         body.classList.add(theme + '-theme');
 
-        navbar.classList.remove('modern-style');
-        formContainers.forEach(container => container.classList.remove('modern-style'));
-
+        // Apply modern-style class and color if needed
         if (theme === 'modern') {
           colorPicker.style.display = 'flex';
           navbar.classList.add('modern-style');
           formContainers.forEach(container => container.classList.add('modern-style'));
-          document.documentElement.style.setProperty('--modern-color', color || savedColor);
+          document.documentElement.style.setProperty('--modern-color', color);
         } else {
           colorPicker.style.display = 'none';
-          document.documentElement.style.setProperty('--modern-color', '');
+          navbar.classList.remove('modern-style');
+          formContainers.forEach(container => container.classList.remove('modern-style'));
         }
 
+        // Update active state of theme buttons
         document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
-        document.querySelector(`.theme-btn[data-theme="${theme}"]`).classList.add('active');
+        document.querySelector(`.theme-btn[data-theme="${theme}"]`)?.classList.add('active');
 
+        // Update active state of color swatches
         document.querySelectorAll('.color-swatch').forEach(swatch => swatch.classList.remove('active'));
-        if (color) {
-            document.querySelector(`.color-swatch[data-color="${color}"]`).classList.add('active');
+        if (theme === 'modern') {
+            document.querySelector(`.color-swatch[data-color="${color}"]`)?.classList.add('active');
         }
       }
     });
