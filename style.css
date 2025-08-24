@@ -372,9 +372,3 @@ footer .footer-links a:hover {
   .service-card, .feature-item, .tool-card { padding: 1.5rem; }
   .input-field { width: calc(100% - 2rem); margin-right: 0; }
 }
-@media (max-width: 360px) {
-  .theme-toggle-container { top: 0.5rem; right: 0.5rem; }
-  .theme-btn { width: 30px; height: 30px; }
-  .color-swatch { width: 20px; height: 20px; }
-  .section-title { font-size: 1.5rem; }
-}
