@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="icon" href="logo.png" type="image/png">
-  <script src="https://checkout.flutterwave.com/v3.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -229,12 +228,17 @@
           <button type="button" class="btn btn-primary" onclick="calculateQuote()">Calculate Price</button>
           <p id="total-price" class="total-price"></p>
         </div>
-
-        <div class="form-group payment-section">
-          <label for="customer-email">Your Email:</label>
-          <input type="email" id="customer-email" class="input-field" placeholder="Enter your email for payment" required>
-          <button type="button" class="btn btn-primary" onclick="payWithFlutterwave()">Pay with Flutterwave</button>
+        
+        <div class="contact-form-container">
+          <h3>Get in Touch</h3>
+          <form id="contact-form">
+            <input type="text" placeholder="Your Name" class="input-field" required>
+            <input type="email" placeholder="Your Email" class="input-field" required>
+            <textarea placeholder="Your Message" rows="5" class="input-field" required></textarea>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
         </div>
+
       </form>
     </div>
   </section>
@@ -345,75 +349,6 @@
         totalPrice += parseInt(cb.dataset.price);
       });
       document.getElementById("total-price").innerText = `Estimated Total: ₦${totalPrice.toLocaleString()}`;
-    }
-
-    function payWithFlutterwave() {
-      const email = document.getElementById("customer-email").value;
-      
-      if (totalPrice === 0 || document.getElementById("service").value === "" || document.getElementById("style").value === "") {
-        Swal.fire({
-          icon: 'warning',
-          title: 'Missing Info',
-          text: 'Please calculate a price by selecting a service and style first.'
-        });
-        return;
-      }
-
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Invalid Email',
-          text: 'Please enter a valid email address to proceed with payment.'
-        });
-        return;
-      }
-      
-      if (document.getElementById("service").value === "custom") {
-          Swal.fire({
-            icon: 'info',
-            title: 'Custom Project',
-            text: 'For custom projects, please contact us directly for pricing. Payment cannot be processed through the automated quote tool.'
-          });
-          return;
-      }
-
-      FlutterwaveCheckout({
-        public_key: "FLWPUBK-bd30b9a04098eaaf0a56cbd413f9e496-X", // Replace with your actual public key in production
-        tx_ref: "bst-dev-" + Date.now(),
-        amount: totalPrice,
-        currency: "NGN",
-        payment_options: "card,ussd,banktransfer",
-        customer: {
-          email: email,
-        },
-        callback: function (data) {
-          if (data.status === "successful") {
-            Swal.fire({
-              icon: 'success',
-              title: 'Payment Successful!',
-              text: `Transaction Ref: ${data.transaction_id}. Thank you for your payment! We will be in touch shortly.`
-            });
-          } else {
-            Swal.fire({
-              icon: 'error',
-              title: 'Payment Failed',
-              text: 'Your payment could not be processed. Please try again or contact support.'
-            });
-          }
-        },
-        onclose: function() {
-          Swal.fire({
-            icon: 'info',
-            title: 'Payment Window Closed',
-            text: 'You closed the payment window. Transaction was not completed.'
-          });
-        },
-        customizations: {
-          title: "BST Developments",
-          description: "Payment for custom web development service",
-          logo: "logo.png",
-        },
-      });
     }
 
     // Handle contact form submission (basic example)
