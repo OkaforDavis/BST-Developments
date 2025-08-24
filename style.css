@@ -533,6 +533,7 @@ section {
   font-size: 1.1rem;
 }
 
+/* Hover effect for form input fields */
 .input-field {
   width: 100%;
   padding: 0.85rem 1rem;
@@ -548,7 +549,8 @@ section {
   color: var(--color-gray-medium);
 }
 
-.input-field:focus {
+.input-field:focus,
+.input-field:hover {
   outline: none;
   border-color: var(--color-light-blue);
   box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
